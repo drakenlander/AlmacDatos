@@ -24,14 +24,14 @@ CREATE TABLE [Purchasing].[ProductVendor](
 	[MinOrderQty] [int] NOT NULL,
 	[MaxOrderQty] [int] NOT NULL,
 	[OnOrderQty] [int] NULL,
-	[UnitMeasureCode] [nchar](3) NOT NULL,
+	[UnitMeasureCode] [nvarchar](3) NOT NULL,
 	[ModifiedDate] [datetime] NOT NULL);
 
 CREATE TABLE [Purchasing].[PurchaseOrderDetail](
 	[PurchaseOrderID] [int] NOT NULL,
 	[PurchaseOrderDetailID] [int] IDENTITY(1,1) NOT NULL,
 	[DueDate] [datetime] NOT NULL,
-	[OrderQty] [smallint] NOT NULL,
+	[OrderQty] [int] NOT NULL,
 	[ProductID] [int] NOT NULL,
 	[UnitPrice] [money] NOT NULL,
 	[LineTotal]  AS (isnull([OrderQty]*[UnitPrice],(0.00))),
@@ -42,8 +42,8 @@ CREATE TABLE [Purchasing].[PurchaseOrderDetail](
 
 CREATE TABLE [Purchasing].[PurchaseOrderHeader](
 	[PurchaseOrderID] [int] IDENTITY(1,1) NOT NULL,
-	[RevisionNumber] [tinyint] NOT NULL,
-	[Status] [tinyint] NOT NULL,
+	[RevisionNumber] [int] NOT NULL,
+	[Status] [int] NOT NULL,
 	[EmployeeID] [int] NOT NULL,
 	[VendorID] [int] NOT NULL,
 	[ShipMethodID] [int] NOT NULL,
@@ -65,10 +65,10 @@ CREATE TABLE [Purchasing].[ShipMethod](
 
 CREATE TABLE [Purchasing].[Vendor](
 	[BusinessEntityID] [int] NOT NULL,
-	[AccountNumber] [bigint] NOT NULL,
+	[AccountNumber] [int] NOT NULL,
 	[Name] [nvarchar] NOT NULL,
-	[CreditRating] [tinyint] NOT NULL,
-	[PreferredVendorStatus] [tinyint] NOT NULL,
-	[ActiveFlag] [tinyint] NOT NULL,
+	[CreditRating] [int] NOT NULL,
+	[PreferredVendorStatus] [int] NOT NULL,
+	[ActiveFlag] [int] NOT NULL,
 	[PurchasingWebServiceURL] [nvarchar](1024) NULL,
 	[ModifiedDate] [datetime] NOT NULL)
